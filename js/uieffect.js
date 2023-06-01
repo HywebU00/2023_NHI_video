@@ -23,7 +23,7 @@ $(function(){
     function glideUp() {
       for (let i = 0; i < count; i++) {
         _optList.stop(true, false).animate({ 'top': 0 }, speed);
-        _optItem.eq(i).delay( speed * i * .4).stop(true, false).animate({ 'top': 0 }, speed, function(){
+        _optItem.eq(i).stop(true, false).animate({ 'top': 0 }, speed*i , function(){
           if ( i == count-1) {_optList.height(0).hide()}
         });
       }
@@ -35,7 +35,7 @@ $(function(){
         let height = _optItem.outerHeight(true);
         _optList.stop(true, false).animate({ 'top': height }, speed);
         for (let i = 0; i < count; i++) {
-          _optItem.eq(i).delay( speed*i*.3 ).stop(true, false).animate({ 'top': height * i }, speed, function(){
+          _optItem.eq(i).stop(true, false).animate({ 'top': height * i }, speed*i*1.2, function(){
             _optList.height( height * count);
           })
         }
@@ -47,9 +47,18 @@ $(function(){
     _optButton.add(_optLink).click(glideUp);
     _this.siblings().click(glideUp);
     _this.siblings().children('a, button').focus(glideUp);
+
+    _optList.blur( function(){
+      if ($(this).parent().is(':last-child') ) {
+        glideUp();
+      }
+    })
+
   })
 
-    // /////////// font size 和 cookie ///////////////
+
+
+  // /////////// font size 和 cookie ///////////////
   // font size：顯示所選項目
   var _fontSize = $('.fontSize');
   var _fontSizeBtn = _fontSize.children('button');

@@ -14,35 +14,21 @@ $wwMaximum: 1200px;
 // ---------- 顏色變數 ----------- //
 $primaryColor:#005176;
 $secondaryColor: #68d7dc;
-$assistant: #c7e150;
+$assistant: #fff457;
 
 $fontColor: #333;
 $fontColorLight: #666;
 $fontColorDark: #000;
 $fontInvert: #fff;
-$linkColor: #005176;
-// $mainBg: #fff;
-
-// $borderColor: #c1c4c6;
-// $borderColorLight: #d2d2d2;
-// $borderColorDark:#434242;
-// $shadow:rgba(0, 0, 0, 0.2);
-// $shadow2:rgba(0, 0, 0, 0.5);
+$linkColor: #005289;
+$focusColor: #009fb8;
 
 $gray: #a6b6b9;
-// $grayLight: #f1f0ed;
 $grayDark: #424344;
-
+$white: #fff;
 
 // ---------- 顏色變數 ----------- //
 
-// ---------- 漸層 ----------- //
-%grandient{
-  background-image: linear-gradient(90deg ,#2a90d1, #00b6d1);
-}
-%grandientV{
-  background-image: linear-gradient(0deg,#2a90d1, #00b6d1);
-}
 
 ////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////
@@ -72,7 +58,7 @@ body{
     padding: 0 1em; margin-left: 2em; border-radius: 0 0 4px 4px;
     overflow: hidden;
     font-size: .9rem; height: 1.6em; line-height: 1.6;
-    background-color: #c00; color: #fff;
+    background-color: $assistant; color: $fontColorDark;
     text-decoration: none; outline: none;  cursor: pointer;
     transition:top .3s; 
     &:focus{ top: 0;}
@@ -89,12 +75,12 @@ body{
   @media screen and (min-width: $wwNormal){
     display: block; position: absolute; left: 4px;top: 4px;
     font-size: 1rem;
-    text-decoration: none; outline: none; line-height: 1; color: #00b6d1;
-    &:focus{box-shadow: #efed8d 0 0 0 2px;}
+    text-decoration: none; outline: none; line-height: 1; color: $focusColor;
+    &:focus{box-shadow: $assistant 0 0 0 2px;}
   }
 }
 @media screen and (min-width: $wwNormal){
-  .main .accesskey:focus {box-shadow: #00b6d1 0 0 0 2px;}
+  .main .accesskey:focus {box-shadow: $focusColor 0 0 0 2px;}
 }
 @media screen and (min-width: $wwMaximum){
   .webHeader .accesskey { left: calc(50% - $wwMaximum*.5);}
@@ -104,14 +90,14 @@ body{
 // 版頭 .webHeader /////////////////////////////////////////
 .webHeader{
   position: relative; padding: 0;margin: 0;
-  background-color: #005176; color: #fff;
-  background-image: linear-gradient(100deg, #005176 40%, #68d7dc 100%);
+  background-color: $primaryColor; color: $fontInvert;
+  background-image: linear-gradient(100deg, $primaryColor 40%, $secondaryColor 100%);
   h1{
     width: calc(100% - 120px); margin: 0; padding:6px 0; 
     font-size: 1rem;
     a{
       display: block; outline: none;
-      &:focus img{ box-shadow: #efed8d 0 0 0 2px; }
+      &:focus img{ box-shadow: $assistant 0 0 0 2px; }
     }
     img{ 
       display: block; height: 52px;margin: 0 1.5vw;
@@ -121,7 +107,7 @@ body{
 
   @media screen and (min-width: $wwNormal){
     padding: 30px 4vw 30px calc(4vw - 6px); height: auto;
-    background-image: url(../images/header_bg.jpg) , linear-gradient(to right, #005176 50%, #68d7dc 51%);
+    background-image: url(../images/header_bg.jpg) , linear-gradient(to right, $primaryColor 30%, $secondaryColor 80%);
     background-position: center top, 0 0;
     background-repeat: no-repeat;
     h1{
@@ -154,23 +140,11 @@ body{
 
 
 
-
-
 ////////////////////////////////////////////////////////////
-// 排版 .breadcrumb 和 .funcBar ////////////////////////////
-.flexC2{
-  margin: 0 auto;
-  display: flex; flex-flow: row wrap; justify-content: space-between; align-items: center;
-  @media screen and (min-width: $wwNormal){
-    width: 92%;
-  }
-  .funcBar, .breadcrumb{ flex: 0 0 auto;}
-}
-
 // 瀏覽路徑（麵包屑）///////////////////////////////////////
 .breadcrumb{
   margin: 0 0 0 2vw; padding: 20px 0;
-  ul{ list-style: none; margin: 0; padding: 0; line-height: 1.2;}
+  ul{ list-style: none; margin: 0; padding: 0; line-height: 1.1;}
   li{
     float: left; position: relative;color: $fontColorDark;
     &:nth-child(n+2){padding-left: 1.8em;
@@ -183,10 +157,10 @@ body{
     }
     &:first-child{padding-left: 0;}
     a{
-      display: block; text-decoration: none; outline: none; color: $fontColorLight;
-      border-bottom: 1px solid transparent;
-      &:hover, &:focus{  border-bottom-color: $fontColor; color: $fontColor;}
-      &:focus{ box-shadow: $linkColor 0 0 0 2px;}
+      display: block; text-decoration: none; outline: none; 
+      color: $fontColorLight;
+      &:hover{ text-decoration: underline;}
+      &:focus{ box-shadow: $focusColor 0 0 0 2px;text-decoration: none;}
     }
   }
 
@@ -208,22 +182,23 @@ body{
       position: relative; margin:5px;padding: 0; text-indent: -20em;
       a, button{
         display: block;width: 44px; height: 44px; overflow: hidden;margin: 0; padding: 0;
-        background-color: $grayDark; background-repeat: no-repeat; background-position: center center;
-        color: $fontInvert; border: none; border-radius: 50%;
+        background-color: $grayDark; color: $fontInvert;
+        background-repeat: no-repeat; background-position: center center;
+        border: none; border-radius: 50%;
         transition: .2s;
         &:hover, &:focus{
           box-shadow: $primaryColor 0 0 0 3px;
           background-color: $primaryColor;
         }
       }
-      &.back>a{
-        background-image: url(../images/icon_back.png);
-        background-size: 36px;
-      }
-      &.print>a{
-        background-image: url(../images/icon_print.png);
-        background-size: 24px;
-      }
+      // &.back>a{
+      //   background-image: url(../images/icon_back.png);
+      //   background-size: 36px;
+      // }
+      // &.print>a{
+      //   background-image: url(../images/icon_print.png);
+      //   background-size: 24px;
+      // }
 
 
       // 第二層
@@ -232,9 +207,10 @@ body{
         width: 44px; margin-top: -2px;
         &>li{
           position: absolute; top: 0; left: 0; margin: 4px 0; padding: 0;
-          a, button{background-color: $primaryColor;
+          a, button{
+            background-color: $primaryColor;
             &:hover, &:focus{
-              box-shadow:#fff 0 0 0 1px, $primaryColor 0 0 0 3px;
+              box-shadow:$white 0 0 0 1px, $primaryColor 0 0 0 4px;
               background-color: $primaryColor;
             }
           }
@@ -250,7 +226,17 @@ body{
           background-size: 24px;
         }
         li{
-          &>a{ background-color: transparent;}
+          &>a{ background-color: transparent;
+            &[href*="facebook"]{
+              &:hover, &:focus{box-shadow:$white 0 0 0 1px, #3b5998 0 0 0 4px;}
+            }
+            &[href*="twitter"]{
+              &:hover, &:focus{box-shadow:$white 0 0 0 1px, #419bd6 0 0 0 4px;}
+            }
+            &[href*="line"]{
+              &:hover, &:focus{box-shadow:$white 0 0 0 1px, #3ace01 0 0 0 4px;}
+            }
+          }
         }
       }
     }
@@ -262,7 +248,18 @@ body{
 
 }
 
+// 排版 .breadcrumb 和 .funcBar ////////////////////////////
+.flexC2{
+  margin: 0 auto;
+  display: flex; flex-flow: row wrap; justify-content: space-between; align-items: center;
+  @media screen and (min-width: $wwNormal){
+    width: 92%;
+  }
+  .funcBar, .breadcrumb{ flex: 0 0 auto;}
+}
 
+
+////////////////////////////////////////////////////////////
 // 文字大小 ////////////////////////////////////////////////
 .fontSize{
   button{ line-height: 44px; font-size: inherit;}
@@ -279,6 +276,8 @@ body{
 ////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////
+
+
 /// 影像播放區 /////////////////////////////////////////////
 .videoPlay{
   margin: 12px auto;
