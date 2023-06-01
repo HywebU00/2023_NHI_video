@@ -1,0 +1,303 @@
+///////////////////////////////////////////////////////////////////
+// 健保署中文版．影片播放 2023 ////////////////////////////////////
+// ＊獨立存在的頁面 /////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////
+
+// ---------- RWD 斷點 ---------- //
+$wwSlim: 480px;
+$wwMedium: 700px;
+$wwNormal: 1000px;
+$wwMaximum: 1200px;
+// ---------- RWD 斷點 ----------- //
+
+
+// ---------- 顏色變數 ----------- //
+$primaryColor:#005176;
+$secondaryColor: #68d7dc;
+$assistant: #c7e150;
+
+$fontColor: #333;
+$fontColorLight: #666;
+$fontColorDark: #000;
+$fontInvert: #fff;
+$linkColor: #005176;
+// $mainBg: #fff;
+
+// $borderColor: #c1c4c6;
+// $borderColorLight: #d2d2d2;
+// $borderColorDark:#434242;
+// $shadow:rgba(0, 0, 0, 0.2);
+// $shadow2:rgba(0, 0, 0, 0.5);
+
+$gray: #a6b6b9;
+// $grayLight: #f1f0ed;
+$grayDark: #424344;
+
+
+// ---------- 顏色變數 ----------- //
+
+// ---------- 漸層 ----------- //
+%grandient{
+  background-image: linear-gradient(90deg ,#2a90d1, #00b6d1);
+}
+%grandientV{
+  background-image: linear-gradient(0deg,#2a90d1, #00b6d1);
+}
+
+////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////
+body{
+  margin: 0;padding: 0;
+  background-color: #fff;
+  
+  *{box-sizing: border-box;}
+
+  @media screen and (min-width: $wwNormal){
+    background-image: url(../images/main_bg2.png), url(../images/main_bg1.jpg);
+    background-repeat: repeat, no-repeat;
+    background-position: left bottom;
+  }
+}
+
+////////////////////////////////////////////////////////////
+// 跳至內容區 //////////////////////////////////////////////
+.goCenter{
+  display: none;
+  @media screen and (min-width: $wwNormal){
+    display: block; position: absolute; top: -2em; left: 0; z-index: 99;
+    padding: 0 1em; margin-left: 2em; border-radius: 0 0 4px 4px;
+    overflow: hidden;
+    font-size: .9rem; height: 1.6em; line-height: 1.6;
+    background-color: #c00; color: #fff;
+    text-decoration: none; outline: none;  cursor: pointer;
+    transition:top .3s; 
+    &:focus{ top: 0;}
+    &:hover, &:focus{  opacity: 1; }
+  }
+  @media screen and (min-width: $wwMaximum){
+    left: calc(50vw  - #{$wwMaximum}*.5);
+  }
+}
+
+// 無障礙定位點 ////////////////////////////////////////////
+.accesskey{
+  display: none;
+  @media screen and (min-width: $wwNormal){
+    display: block; position: absolute; left: 4px;top: 4px;
+    text-decoration: none; outline: none; line-height: 1; color: #00b6d1;
+    &:focus{box-shadow: #efed8d 0 0 0 2px;}
+  }
+}
+@media screen and (min-width: $wwNormal){
+  .main .accesskey:focus {box-shadow: #00b6d1 0 0 0 2px;}
+}
+@media screen and (min-width: $wwMaximum){
+  .webHeader .accesskey { left: calc(50% - $wwMaximum*.5);}
+}
+
+////////////////////////////////////////////////////////////
+// 版頭 .webHeader /////////////////////////////////////////
+.webHeader{
+  position: relative; padding: 0;margin: 0;
+  background-color: #005176; color: #fff;
+  background-image: linear-gradient(100deg, #005176 40%, #68d7dc 100%);
+  h1{
+    width: calc(100% - 120px); margin: 0; padding:6px 0; 
+    font-size: 1rem;
+    a{
+      display: block; outline: none;
+      &:focus img{ box-shadow: #efed8d 0 0 0 2px; }
+    }
+    img{ 
+      display: block; height: 52px;margin: 0 1.5vw;
+      object-fit: contain; object-position: left;
+    }
+  }
+
+  @media screen and (min-width: $wwNormal){
+    padding: 30px 4vw 30px calc(4vw - 6px); height: auto;
+    background-image: url(../images/header_bg.jpg) , linear-gradient(to right, #005176 50%, #68d7dc 51%);
+    background-position: center top, 0 0;
+    background-repeat: no-repeat;
+    h1{
+      margin: 0 auto; padding: 0; width: auto; 
+      img{ height: 68px; margin: 0;}
+    }
+  }
+
+  @media screen and (min-width: $wwMaximum){
+    padding-left: 42px; padding-right: 48px;
+    h1{ width: calc($wwMaximum - 90px);}
+  }
+
+}
+
+
+////////////////////////////////////////////////////////////
+// 主要內容區 .main ////////////////////////////////////////
+.main{
+  position: relative; margin: 0 auto;
+  @media screen and (min-width: $wwNormal){
+    max-width: 1200px; padding-bottom: 90px; min-height: calc(100vh - 128px);
+  }
+}
+
+
+////////////////////////////////////////////////////////////
+// 排版 .breadcrumb 和 .funcBar ////////////////////////////
+.flexC2{
+  margin: 0 auto;
+  display: flex; flex-flow: row wrap; justify-content: space-between; align-items: center;
+  @media screen and (min-width: $wwNormal){
+    width: 92%;
+  }
+  .funcBar, .breadcrumb{ flex: 0 0 auto;}
+}
+
+// 瀏覽路徑（麵包屑）///////////////////////////////////////
+.breadcrumb{
+  margin: 0 0 0 2vw; padding: 20px 0;
+  ul{ list-style: none; margin: 0; padding: 0; line-height: 1.2;}
+  li{
+    float: left; position: relative;color: $fontColorDark;
+    &:nth-child(n+2){padding-left: 1.8em;
+      &::before{ 
+        content: '';position: absolute; left:.51em; top: calc(50% - 5px); 
+        width: 6px; height: 6px;
+        border: 2px solid $gray;  border-left: none; border-bottom: none;
+        transform: rotate(45deg);
+      }
+    }
+    &:first-child{padding-left: 0;}
+    a{
+      display: block; text-decoration: none; outline: none; color: $fontColorLight;
+      border-bottom: 1px solid transparent;
+      &:hover, &:focus{  border-bottom-color: $fontColor; color: $fontColor;}
+      &:focus{ box-shadow: $linkColor 0 0 0 2px;}
+    }
+  }
+
+  @media screen and (min-width: $wwNormal){
+    margin: 0; padding: 25px 0;
+  }
+
+}
+
+// 列印、分享、返回 等功能圖示 /////////////////////////////
+
+.funcBar{
+  margin: 0 calc(2vw - 5px) 0 30px;
+  font-size: 1rem; z-index: 99; position: relative;
+  a, button{cursor: pointer; outline: none;}
+
+  ul{ list-style: none; margin: 0;padding: 0; text-align: center;}
+  &>ul{display: flex; flex-flow: row wrap; justify-content: flex-end;
+    &>li{
+      position: relative; margin:5px;padding: 0; text-indent: -20em;
+      a, button{
+        display: block;width: 44px; height: 44px; overflow: hidden;margin: 0; padding: 0;
+        background-color: $grayDark; background-repeat: no-repeat; background-position: center center;
+        color: $fontInvert; border: none; border-radius: 50%;
+        transition: .2s;
+        &:hover, &:focus{
+          box-shadow: $primaryColor 0 0 0 3px;
+          background-color: $primaryColor;
+        }
+      }
+      &.back>a{
+        background-image: url(../images/icon_back.png);
+        background-size: 36px;
+      }
+      &.print>a{
+        background-image: url(../images/icon_print.png);
+        background-size: 24px;
+      }
+
+
+      // 第二層
+      &>ul{ 
+        position: absolute; top: 0; left: 0; display: none;
+        width: 44px; margin-top: -2px;
+        &>li{
+          position: absolute; top: 0; left: 0; margin: 4px 0; padding: 0;
+          a, button{background-color: $primaryColor;
+            &:hover, &:focus{
+              box-shadow:#fff 0 0 0 1px, $primaryColor 0 0 0 3px;
+              background-color: $primaryColor;
+            }
+          }
+          img{ display: block; width: 100%; height: 100%; margin: 0 auto;border-radius: 50%; }
+        }
+      }
+
+      &.compound>button{position: relative; z-index: 19;}
+  
+      &.share{
+        &>button{
+          background-image: url(../images/icon_share.png);
+          background-size: 24px;
+        }
+        li{
+          &>a{ background-color: transparent;}
+        }
+      }
+    }
+  }
+  
+  @media screen and (min-width: $wwNormal){
+    margin-right: 0;
+  }
+
+}
+// 文字大小 ////////////////////////////////////////////////
+.fontSize{
+  button{ line-height: 44px;}
+  .smallFont{ font-size: .85rem;
+    &::after{content: '-';}
+  }
+  .mediumFont{ font-size: 1.125rem;}
+  .largeFont{ font-size: 1.3rem;
+    &::after{content: '+';}
+  }
+}
+
+
+////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////
+/// 影像播放區 /////////////////////////////////////////////
+.videoPlay{
+  margin: 12px auto;
+  .videoTitle{
+    margin: 0 2vw 15px; padding: 0;
+    font-size: 1.8em; line-height: 1.2;
+
+    &::after {
+      content: ''; display: block; height: 2px;
+      margin: 6px auto 0;
+      background-image: linear-gradient( to right, #0086cb, #00c069);
+    }
+  }
+  iframe{
+    display: block; margin: 0; width: 100%; height: 56.25vw;
+    // 56.25vw = 100vw*9/16
+  }
+
+  @media screen and (min-width: $wwNormal){
+    width: 92%; margin-top: 15px;
+    .videoTitle{
+      margin: 0 0 24px;
+      &::after{ margin-top: 16px;}
+    }
+    iframe{
+      height: calc( 92vw/16*9);
+    }
+  }
+
+  @media screen and (min-width: $wwMaximum){
+    iframe{
+      height: calc( $wwMaximum*.5175);
+      // .5175 = .92*9/16
+    }
+  }
+}
