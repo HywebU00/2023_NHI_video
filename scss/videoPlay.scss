@@ -50,6 +50,10 @@ body{
   margin: 0;padding: 0;
   background-color: #fff;
   
+  font-size: 1em; 
+  font-family: Arial, Helvetica, "Microsoft JhengHei", "微軟正黑體", sans-serif;
+  
+  &.noScroll{ overflow: hidden; overflow-y:hidden; }
   *{box-sizing: border-box;}
 
   @media screen and (min-width: $wwNormal){
@@ -137,6 +141,10 @@ body{
 // 主要內容區 .main ////////////////////////////////////////
 .main{
   position: relative; margin: 0 auto;
+
+  &.smallFont{ font-size: .9375em;}
+  &.largeFont{ font-size: 1.25em;}
+
   @media screen and (min-width: $wwNormal){
     max-width: 1200px; padding-bottom: 90px; min-height: calc(100vh - 128px);
   }

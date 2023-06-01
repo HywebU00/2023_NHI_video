@@ -54,14 +54,13 @@ $(function(){
   var _fontSize = $('.fontSize');
   var _fontSizeBtn = _fontSize.children('button');
   var _fsOption = _fontSize.find('ul>li>button');
-  var _innerMain = $('.main.inner');
+  var _main = $('.main');
 
   _fsOption.click(function(){
     let fontClass = $(this).attr('class');
     _fontSizeBtn.removeClass().addClass(fontClass);
-    _innerMain.removeClass('largeFont mediumFont smallFont').addClass(fontClass);
+    _main.removeClass('largeFont mediumFont smallFont').addClass(fontClass);
     createCookie('FontSize', fontClass , 365);
-
   })
 
   function createCookie(name, value, days) {
