@@ -88,6 +88,7 @@ body{
   display: none;
   @media screen and (min-width: $wwNormal){
     display: block; position: absolute; left: 4px;top: 4px;
+    font-size: 1rem;
     text-decoration: none; outline: none; line-height: 1; color: #00b6d1;
     &:focus{box-shadow: #efed8d 0 0 0 2px;}
   }
@@ -142,13 +143,17 @@ body{
 .main{
   position: relative; margin: 0 auto;
 
-  &.smallFont{ font-size: .9375em;}
-  &.largeFont{ font-size: 1.25em;}
+  &.smallFont{ /* font-size: .9375em; */ font-size: .88rem;}
+  &.largeFont{/*  font-size: 1.25em; */ font-size: 1.5rem;}
+  &.mediumFont{ font-size: 1rem;}
 
   @media screen and (min-width: $wwNormal){
     max-width: 1200px; padding-bottom: 90px; min-height: calc(100vh - 128px);
   }
 }
+
+
+
 
 
 ////////////////////////////////////////////////////////////
@@ -192,7 +197,6 @@ body{
 }
 
 // 列印、分享、返回 等功能圖示 /////////////////////////////
-
 .funcBar{
   margin: 0 calc(2vw - 5px) 0 30px;
   font-size: 1rem; z-index: 99; position: relative;
@@ -257,14 +261,16 @@ body{
   }
 
 }
+
+
 // 文字大小 ////////////////////////////////////////////////
 .fontSize{
-  button{ line-height: 44px;}
+  button{ line-height: 44px; font-size: inherit;}
+  .mediumFont { font-size: 1rem;}
   .smallFont{ font-size: .85rem;
     &::after{content: '-';}
   }
-  .mediumFont{ font-size: 1.125rem;}
-  .largeFont{ font-size: 1.3rem;
+  .largeFont{ font-size: 1.2rem;
     &::after{content: '+';}
   }
 }
